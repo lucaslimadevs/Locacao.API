@@ -44,6 +44,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
 });
 
+//Automapper
+builder.Services.AddAutoMapper(typeof(Program));
+
 //cors
 builder.Services.AddCorsConfig();
 
