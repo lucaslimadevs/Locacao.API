@@ -18,7 +18,7 @@ namespace Locacao.Infra.SqlServer.Repositories
 
         public async Task<IEnumerable<Equipamento>> BuscarTodosAsync()
         {
-            return await DbSet.ToListAsync();
+            return await DbSet.Where(e => e.Ativo).ToListAsync();
         }
     }
 }

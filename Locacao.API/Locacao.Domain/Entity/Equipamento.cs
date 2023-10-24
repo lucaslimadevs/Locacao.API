@@ -25,6 +25,11 @@
             PrecoSemanal = novoPrecoSemanal;
             PrecoMensal = novoPrecoMensal;
         }
+
+        public void DeletarEquipamento()
+        {
+            Ativo = false;
+        }
     }
 }
     

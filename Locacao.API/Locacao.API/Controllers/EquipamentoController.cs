@@ -51,5 +51,18 @@ namespace Locacao.API.Controllers
 
             return BadRequest(result);
         }
+
+        [HttpDelete("id")]
+        public async Task<IActionResult> DeletarEquipamento([FromRoute] Guid id)
+        {
+            var result = await _mediator.Send(new DeletarEquipamentoCommand { Id = id });
+
+            if (result)
+            {
+                return Ok(result);
+            }
+
+            return BadRequest(result);
+        }
     }
 }
