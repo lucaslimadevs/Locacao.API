@@ -19,7 +19,7 @@ namespace Locacao.Queries.Equipamentos.Handler
 
         public async Task<IEnumerable<EquipamentoDto>> Handle(BuscarEquipamentoQuery request, CancellationToken cancellationToken)
         {
-            var resultDb = await _equipamentoRepository.BuscarTodos();
+            var resultDb = await _equipamentoRepository.BuscarTodosAsync();
 
             var result = _mapper.Map<List<EquipamentoDto>>(resultDb);
 

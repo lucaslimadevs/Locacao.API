@@ -2,6 +2,7 @@
 using Locacao.Domain.Repositories;
 using MediatR;
 using Locacao.Domain.Entity;
+using AutoMapper;
 
 namespace Locacao.Commands.Equipamentos.Handler
 {
@@ -9,22 +10,18 @@ namespace Locacao.Commands.Equipamentos.Handler
     {
         public readonly IEquipamentoRepository _equipamentoRepository;
         public readonly IUnitOfWork _unitOfWork;
+        public readonly IMapper _mapper;
 
-        public InserirEquipamentoCommandHandler(IEquipamentoRepository equipamentoRepository, IUnitOfWork unitOfWork)
+        public InserirEquipamentoCommandHandler(IEquipamentoRepository equipamentoRepository, IUnitOfWork unitOfWork, IMapper mapper)
         {
             _equipamentoRepository = equipamentoRepository;
             _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task<bool> Handle(InserirEquipamentoCommand request, CancellationToken cancellationToken)
         {
-            var equipamento = new Equipamento(
-                request.Nome,
-                request.Descricao,
-                request.PrecoDiario,
-                request.PrecoSemanal,
-                request.PrecoMensal
-                );
+            var equipamento = _mapper.Map<Equipamento>(request);
 
             await _equipamentoRepository.AddAsync(equipamento);
 

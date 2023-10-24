@@ -11,7 +11,12 @@ namespace Locacao.Infra.SqlServer.Repositories
         {
         }
 
-        public async Task<IEnumerable<Equipamento>> BuscarTodos()
+        public async Task<Equipamento?> BuscarPorIdAsync(Guid id)
+        {
+            return await DbSet.FirstOrDefaultAsync(e => e.Id == id);
+        }
+
+        public async Task<IEnumerable<Equipamento>> BuscarTodosAsync()
         {
             return await DbSet.ToListAsync();
         }
